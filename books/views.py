@@ -16,6 +16,7 @@ def addBook(request,userId):
 	book.name = request.POST['name']
 	book.author = request.POST['author']
 	book.kind = request.POST['kind']
+	book.description = request.POST['description']
 	book.save()
 	return HttpResponse(200)
 
@@ -42,7 +43,7 @@ def deleteBook(request,bookId):
 #(?P<bookId>\d+)/get/
 @csrf_exempt
 def getBook(request,bookId):
-	return HttpResponse(serializers.serialize("json",Book.objects.fitler(pk=bookId)))
+	return HttpResponse(serializers.serialize("json",Book.objects.filter(pk=bookId)))
 
 #all/
 @csrf_exempt
@@ -77,9 +78,9 @@ def getLikeNumber(request,bookId):
 def addLike(request, bookId, userId):
 	book = Book.objects.get(pk=bookId)
 	user = User.objects.get(pk=userId)
-	if book.like_set.filter(book=book, user=user).exits():
+	if book.like_set.filter(book=book, user=user).exists():
 		return HttpResponse(500)
-	book.like_set.add(book=book,user=user)
+	book.like_set.create(book=book,user=user)
 	return HttpResponse(200)
 
 # available

@@ -54,3 +54,7 @@ def login(request):
 		return HttpResponse(user.pk)
 	else:
 		return HttpResponse(-1)
+
+def getAvatar(request,userId):
+	user = User.objects.get(pk=userId)
+	return HttpResponse(user.avatar)

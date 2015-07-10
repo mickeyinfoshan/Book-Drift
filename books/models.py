@@ -13,8 +13,9 @@ class Book(models.Model):
 	originOwner = models.ForeignKey(User,related_name='originOwner')
 	currentOwner = models.ForeignKey(User, related_name='currentOwner')
 	createTime = models.DateField(auto_now_add=True)
+	description = models.TextField("简介")
 	def __unicode__(self):
-		return self.originOwner + "的" + self.name + u"（" + self.author + u"）"
+		return self.name + u"（" + self.author + u"）"
 
 class Comment(models.Model):
 	user = models.ForeignKey(User)

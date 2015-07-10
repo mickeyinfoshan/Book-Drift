@@ -9,7 +9,7 @@ urlpatterns = [
 	url(r'^(?P<bookId>\d+)/comment/all/$',views.getComments,name='getComments'),
 	url(r'^(?P<bookId>\d+)/comment/add/by/(?P<userId>\d+)/$',views.addComment,name='addComment'),
 	url(r'^(?P<bookId>\d+)/like/get/number/$',views.getLikeNumber,name='getLikeNumber'),
-	url(r'^(?P<bookId>\d+)/like/add/(?P<userId>\d+)/$',views.addLike,name='addLike'),
+	url(r'^(?P<bookId>\d+)/like/by/(?P<userId>\d+)/$',views.addLike,name='addLike'),
 	url(r'^all/$',views.getAllBooks,name='getAllBooks'),
 	url(r'^available/$',views.addLike,name='addLike'),
 ]
