@@ -1,7 +1,8 @@
 var BookRecord = React.createClass({
 	getInitialState: function() {
 		return {
-			nextApply:null 
+			nextApply:null,
+			showForm : false 
 		};
 	},
 	componentDidMount: function() {
@@ -14,8 +15,10 @@ var BookRecord = React.createClass({
 			res = JSON.parse(res);
 			if(res.length){
 				var nextApply = res[0];
+				var showForm = this.state.showForm;
 				this.setState({
-					nextApply:nextApply 
+					nextApply:nextApply ,
+					showForm : showForm
 				});
 			}
 		}.bind(this));
@@ -49,19 +52,42 @@ var BookRecord = React.createClass({
   		React.unmountComponentAtNode(node);
   		$(node).remove();
 	},
+	showUpdateForm:function() {
+		this.toggleForm(true);
+	},
+	closeForm:function() {
+		this.toggleForm(false);
+	},
+	toggleForm:function(show){
+		var nextApply = this.state.nextApply;
+		this.setState({
+			nextApply:nextApply,
+			showForm:show 
+		});
+	},
 	render: function() {
 		var picture = '/media/' + this.props.book.fields.picture;
 		var rightPart = this.getRightPart();
 		return (
 			<div className="media" style={{borderTop:'solid 1px #ddd'}}>
   				<div className="media-left">
-      				<img className="media-object" src={picture} />
+      				<img className="media-object" src={picture} style={{width:242,height:200}}/>
 				</div>
   				<div className="media-body">
     				<h4 className="media-heading">{this.props.book.fields.name}</h4>
     				<p>{this.props.book.fields.author}</p>
+    				<p>{this.props.book.fields.description}</p>
+    				<button className="btn" onClick={this.showUpdateForm}>修正</button>
     				<span className="pull-right">{rightPart}</span>    
   				</div>
+  				<ReactBootstrap.Modal show={this.state.showForm} onHide={this.closeForm}>
+					<ReactBootstrap.Modal.Header closeButton>
+            			<ReactBootstrap.Modal.Title>修正书籍</ReactBootstrap.Modal.Title>
+          			</ReactBootstrap.Modal.Header>
+          			<ReactBootstrap.Modal.Body>
+          				<UpdateBookForm book={this.props.book} success={this.closeForm}/>
+          			</ReactBootstrap.Modal.Body>
+				</ReactBootstrap.Modal>
 			</div>
 		);
 	}

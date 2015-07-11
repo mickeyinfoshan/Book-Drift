@@ -17,6 +17,7 @@ def addBook(request,userId):
 	book.author = request.POST['author']
 	book.kind = request.POST['kind']
 	book.description = request.POST['description']
+	book.picture = request.FILES['picture']
 	book.save()
 	return HttpResponse(200)
 
@@ -26,10 +27,12 @@ def updateBook(request,bookId):
 	book = Book.objects.get(pk=bookId)
 	if 'name' in request.POST:
 		book.name = request.POST['name']
-	if 'author' in requeest.POST:
+	if 'author' in request.POST:
 		book.author = request.POST['author']
 	if 'kind' in request.POST:
 		book.kind = request.POST['kind']
+	if 'picture' in request.FILES:
+		book.picture = request.FILES['picture']
 	book.save()
 	return HttpResponse(200)
 
@@ -92,4 +95,8 @@ def getBooksAvailable(request):
 def getUserBooks(request,userId):
 	user = User.objects.get(pk=userId)
 	books = Book.objects.filter(currentOwner=user)
+	return HttpResponse(serializers.serialize("json",books))
+
+def getPopularBooks(request):
+	books = Book.objects.all().order_by('-like')[:3]
 	return HttpResponse(serializers.serialize("json",books))

@@ -41,6 +41,8 @@ def finishDrift(reuqest,driftId):
 def addDriftApply(request,bookId,userId):
 	book = Book.objects.get(pk=bookId)
 	user = User.objects.get(pk=bookId)
+	if book.currentOwner == user:
+		return HttpResponse(500)
 	driftApply = DriftApply(book=book,user=user)
 	driftApply.save()
 	return HttpResponse(200)

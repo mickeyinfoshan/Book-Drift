@@ -11,7 +11,7 @@ var ApplyButton = React.createClass({
 	},
 	render: function() {
 		return (
-			<a href="#" className="btn btn-primary" role="button" onClick={this.addApply}>想要</a> 
+			<a className="btn btn-primary" role="button" onClick={this.addApply}>想要</a> 
 		);
 	}
 });

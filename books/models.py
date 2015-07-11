@@ -16,6 +16,8 @@ class Book(models.Model):
 	description = models.TextField("简介")
 	def __unicode__(self):
 		return self.name + u"（" + self.author + u"）"
+	def getLikeNumber(self):
+		return self.like_set.count()
 
 class Comment(models.Model):
 	user = models.ForeignKey(User)

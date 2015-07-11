@@ -29,7 +29,7 @@ var LikeButton = React.createClass({
 	},
 	render: function() {
 		return (
-			<a href="#" className="btn btn-default" role="button" onClick={this.addLike}>
+			<a className="btn btn-default" role="button" onClick={this.addLike}>
         		<span className="glyphicon glyphicon-thumbs-up">{this.state.like}</span>
         	</a>
 		);

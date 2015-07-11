@@ -2,10 +2,13 @@ var Book = React.createClass({
 	
 	render: function() {
 		var picture = '/media/' + this.props.book.fields.picture;
+		var hash = "#" + this.props.book.pk;
 		return (
-			<div className="col-sm-3 col-md-3">
+			<div className="col-sm-3">
 			<div className="book thumbnail" style={{textAlign:'center',border:'none'}}>
-				<img src={picture} style={{width:242,height:200}}/>
+				<a href={hash}>
+					<img src={picture} style={{width:242,height:200}}/>
+				</a>
       			<div className="caption">
         			<h3>{this.props.book.fields.name}</h3>
         			<p>{this.props.book.fields.author}</p>

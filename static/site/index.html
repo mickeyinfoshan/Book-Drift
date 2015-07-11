@@ -11,55 +11,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	</head>
 	<body>
-		<nav class="navbar navbar-default">
-  			<div class="container">
-    			<div class="navbar-header">
-     				 	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        					<span class="sr-only">Toggle navigation</span>
-        					<span class="icon-bar"></span>
-        					<span class="icon-bar"></span>
-       					 	<span class="icon-bar"></span>
-      					</button>
-      					<a class="navbar-brand" href="#">漂流书吧</a>
-    			</div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <!--<div class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="搜索" id="searchInputBox">
-        </div>
-      </div>-->
-      <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">我<span class="caret"></span></a>
-          
-            <li class="divider"></li>
-            <li><a href="#">退出</a></li>
-          </ul>
-        </li>
-      </ul>
-         </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
-  </nav>
+		
 <div id="viewWrapper">
     
-</div>
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog" id="myModalDialog">
-    
-  </div>
 </div>
 <script type="text/javascript" src="./dist/js/jquery.min.js"></script>
 <script type="text/javascript" src="./dist/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/static/bower_components/react-bootstrap/react-bootstrap.min.js"></script>
+<script type="text/javascript" src="./js/lib.js"></script>
 <script type="text/javascript" src="./js/bookDriftComponents.min.js"></script>
 <script type="text/jsx">
-  var book = '{"fields": {"picture": "books/st.jpg", "kind": "\u79d1\u5e7b", "name": "\u4e09\u4f53", "author": "\u5218\u6148\u6b23", "currentOwner": 3, "originOwner": 1, "createTime": "2015-07-06", "description": "\u300a\u4e09\u4f53\u300b\u662f\u4f5c\u5bb6\u5218\u6148\u6b23\u521b\u4f5c\u7684\u4e00\u90e8\u79d1\u5e7b\u5c0f\u8bf4\u3002\u5c0f\u8bf4\u4e3b\u8981\u8bb2\u8ff0\u4e86\u5728\u6587\u5316\u5927\u9769\u547d\u5982\u706b\u5982\u837c\u8fdb\u884c\u7684\u540c\u65f6\uff0c\u519b\u65b9\u63a2\u5bfb\u5916\u661f\u6587\u660e\u7684\u7edd\u79d8\u8ba1\u5212\u201c\u7ea2\u5cb8\u5de5\u7a0b\u201d\u53d6\u5f97\u4e86\u7a81\u7834\u6027\u8fdb\u5c55\u3002\u4f46\u5728\u6309\u4e0b\u53d1\u5c04\u952e\u7684\u90a3\u4e00\u523b\uff0c\u5386\u7ecf\u52ab\u96be\u7684\u53f6\u6587\u6d01\u6ca1\u6709\u610f\u8bc6\u5230\uff0c\u5979\u5f7b\u5e95\u6539\u53d8\u4e86\u4eba\u7c7b\u7684\u547d\u8fd0\u3002\u5730\u7403\u6587\u660e\u5411\u5b87\u5b99\u53d1\u51fa\u7684\u7b2c\u4e00\u58f0\u557c\u9e23\uff0c\u4ee5\u592a\u9633\u4e3a\u4e2d\u5fc3\uff0c\u4ee5\u5149\u901f\u5411\u5b87\u5b99\u6df1\u5904\u98de\u9a70\u2026\u2026"}, "model": "books.book", "pk": 1}';
-  localStorage['userId'] = 1;
-  book = JSON.parse(book);
-  React.render(<BookRecordList />,document.getElementById('viewWrapper'));
-  //$('#myModal').modal('show');
+  function refresh() {
+    //$('#viewWrapper').html('');
+    React.render(<MainView />,document.getElementById('viewWrapper'));
+  }
+
+  window.onhashchange=refresh;
+  window.onload=refresh;
 </script>
 	</body>
 </html>

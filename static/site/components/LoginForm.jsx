@@ -1,6 +1,7 @@
 var LoginForm = React.createClass({
 	submit:function(e){
 		e.preventDefault();
+		var thisComponent = this;
 		$.ajax({
 			url:'/user/login/',
 			type : 'POST',
@@ -13,13 +14,15 @@ var LoginForm = React.createClass({
 					$('#loginForm input').val('');
 					//this.props.registerSuccessHandler();
 					localStorage['userId'] = res;
+					thisComponent.props.success();
+
 				}
 				else{
-					//this.props.registerFailHandler();
+					alert("用户名或密码错误");
 				}
 			}
-		});
-		//.fail(this.props.registerFailHandler);
+		})
+		.fail(ajaxFail);
 	},
 	render: function() {
 		return (

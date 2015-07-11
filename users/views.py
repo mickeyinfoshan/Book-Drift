@@ -32,7 +32,7 @@ def updateUser(request,userId):
 		user.phone = request.POST['phone']
 	if 'address' in request.POST:
 		user.address = request.POST['address']
-	if 'avatar' in request.POST:
+	if 'avatar' in request.FILES:
 		user.avatar = request.FILES['avatar']
 	if 'password' in request.POST:
 		password = hashlib.sha256(request.POST['password']).hexdigest()
