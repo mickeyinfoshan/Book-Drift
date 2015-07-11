@@ -12,4 +12,5 @@ urlpatterns = [
 	url(r'^(?P<bookId>\d+)/like/by/(?P<userId>\d+)/$',views.addLike,name='addLike'),
 	url(r'^all/$',views.getAllBooks,name='getAllBooks'),
 	url(r'^available/$',views.addLike,name='addLike'),
+	url(r'^of/(?P<userId>\d+)/$',views.getUserBooks,name='addLike'),
 ]

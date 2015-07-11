@@ -6,24 +6,8 @@ module.exports = function(grunt) {
     react: {
       combined_file_output: {
       files: {
-        'js/wenba.js': [
-          "components/AskForm.js",
-          "components/AnswerForm.js",
-          "components/LoginModal.js",
-          "components/RegisterModal.js",
-          "components/Question.js",
-          "components/QuestionList.js",
-          "components/Answer.js",
-          "components/AnswerList.js",
-          "components/QuestionDetail.js",
-          "components/AnswerHistory.js",
-          "components/QuestionHistory.js",
-          "components/QuestionListView.js",
-          "components/QuestionDetailView.js",
-          "components/AnswerHistoryView.js",
-          "components/QuestionHistoryView.js",
-          "components/View.js",
-          "js/init.js"
+        'js/bookdriftComponents.js': [
+          "components/*.jsx",          
         ]
       }
     },
@@ -33,8 +17,8 @@ module.exports = function(grunt) {
         banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> author:Mickey */\n'
       },
       build: {
-        src: 'js/wenba.js',
-        dest: 'js/wenba.min.js'
+        src: 'js/bookdriftComponents.js',
+        dest: 'js/bookdriftComponents.min.js'
       }
     },
   });

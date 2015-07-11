@@ -10,15 +10,20 @@ var BookList = React.createClass({
 	loadDataFromServer : function() {
 		var url = this.props.url;
 		$.get(url,function(res){
+			res = JSON.parse(res);
 			this.setState({
 				books:res 
 			});
 		}.bind(this));
 	},
 	render: function() {
-		var books = this.state.books.map(function(book){
-			return <Book book={book} />
-		});
+		console.log(this.state.books);
+		var books = [];
+		for(var bookIndex = 0; bookIndex<this.state.books.length; bookIndex++){
+			var book = this.state.books[bookIndex];
+			console.log(book);
+			books.push(<Book book={book} />);
+		}
 		return (
 			<div className="bookList">
 				{books}

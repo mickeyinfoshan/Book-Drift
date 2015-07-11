@@ -48,7 +48,8 @@ var AddBookForm = React.createClass({
 				<div className="form-group">
     				<label htmlFor="inputDescription" className="col-sm-2 control-label">简介</label>
     				<div className="col-sm-10">
-      					<input type="text" className="form-control" id="inputDescription" ref="description" name="description" />
+      					//<input type="text" className="form-control" id="inputDescription" ref="description" name="description" />
+      					<textarea className="form-control" id="inputDescription" ref="description" name="description"></textarea>
 					</div>
 				</div>
 				<div className="form-group">

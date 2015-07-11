@@ -63,8 +63,8 @@ def addComment(request,bookId,userId):
 	book = Book.objects.get(pk=bookId)
 	user = User.objects.get(pk=userId)
 	content = request.POST['content']
-	mark = request.POST['mark']
-	book.comment_set.add(content=content, mark=mark, user=user)
+	mark = int(request.POST['mark'])
+	book.comment_set.create(content=content, mark=mark, user=user)
 	return HttpResponse(200)
 
 #(?P<bookId>\d+)/like/get/
@@ -87,4 +87,9 @@ def addLike(request, bookId, userId):
 @csrf_exempt
 def getBooksAvailable(request):
 	books = Book.objects.filter(isFinished=True)
+	return HttpResponse(serializers.serialize("json",books))
+
+def getUserBooks(request,userId):
+	user = User.objects.get(pk=userId)
+	books = Book.objects.filter(currentOwner=user)
 	return HttpResponse(serializers.serialize("json",books))

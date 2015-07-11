@@ -5,6 +5,7 @@ from django.db import models
 from users.models import User
 from books.models import Book
 # Create your models here.
+
 class Drift(models.Model):
 	book = models.ForeignKey(Book)
 	lendTo = models.ForeignKey(User)
