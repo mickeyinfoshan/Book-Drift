@@ -98,5 +98,6 @@ def getUserBooks(request,userId):
 	return HttpResponse(serializers.serialize("json",books))
 
 def getPopularBooks(request):
-	books = Book.objects.all().order_by('-like')[:3]
-	return HttpResponse(serializers.serialize("json",books))
+	books = Book.objects.all()
+	sortedBooks = sorted(books,key=lambda book:len(book.like_set.all()),reverse=True)
+	return HttpResponse(serializers.serialize("json",sortedBooks[:4]))

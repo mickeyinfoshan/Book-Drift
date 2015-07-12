@@ -7,6 +7,7 @@ var BookRecordList = React.createClass({
 	},
 	componentDidMount: function() {
 		this.loadDataFromServer();
+		setInterval(this.loadDataFromServer,2000);
 	},
 	loadDataFromServer : function() {
 		var userId = localStorage['userId'];

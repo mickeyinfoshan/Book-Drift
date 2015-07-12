@@ -23,6 +23,11 @@ var AddCommentForm = React.createClass({
 			if(res!='200'){
 				alert('添加评论失败');
 			}
+			else{
+				$('.glyphicon').removeClass('glyphicon-star');
+				$('#inputComment').val('');
+				alert("成功添加评论");
+			}
 		});
 	},
 	render: function() {

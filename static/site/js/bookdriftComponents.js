@@ -85,6 +85,11 @@ var AddCommentForm = React.createClass({displayName: "AddCommentForm",
 			if(res!='200'){
 				alert('添加评论失败');
 			}
+			else{
+				$('.glyphicon').removeClass('glyphicon-star');
+				$('#inputComment').val('');
+				alert("成功添加评论");
+			}
 		});
 	},
 	render: function() {
@@ -145,14 +150,15 @@ var Book = React.createClass({displayName: "Book",
 		var picture = '/media/' + this.props.book.fields.picture;
 		var hash = "#" + this.props.book.pk;
 		return (
-			React.createElement("div", {className: "col-sm-3"}, 
-			React.createElement("div", {className: "book thumbnail", style: {textAlign:'center',border:'none'}}, 
+			React.createElement("div", {className: "col-sm-3 book"}, 
+			React.createElement("div", {className: "thumbnail", style: {textAlign:'center',border:'none'}}, 
 				React.createElement("a", {href: hash}, 
 					React.createElement("img", {src: picture, style: {width:242,height:200}})
 				), 
       			React.createElement("div", {className: "caption"}, 
         			React.createElement("h3", null, this.props.book.fields.name), 
         			React.createElement("p", null, this.props.book.fields.author), 
+        			React.createElement("p", null, this.props.book.fields.kind), 
         			React.createElement("p", null, 
         				React.createElement(ApplyButton, {book: this.props.book}), 
         				React.createElement(LikeButton, {book: this.props.book})
@@ -270,6 +276,7 @@ var BookList = React.createClass({displayName: "BookList",
 	},
 	componentDidMount: function() {
 		this.loadDataFromServer();
+		//setInterval(this.loadDataFromServer,2000);
 	},
 	loadDataFromServer : function() {
 		var url = this.props.url;
@@ -399,6 +406,7 @@ var BookRecordList = React.createClass({displayName: "BookRecordList",
 	},
 	componentDidMount: function() {
 		this.loadDataFromServer();
+		setInterval(this.loadDataFromServer,2000);
 	},
 	loadDataFromServer : function() {
 		var userId = localStorage['userId'];
@@ -519,6 +527,7 @@ var CommentList = React.createClass({displayName: "CommentList",
 	componentDidMount: function() {
 		this.loadDataFromServer();
 		//setInterval(this.loadDataFromServer,5000);
+		setInterval(this.loadDataFromServer,2000);
 	},
 	render: function() {
 		var comments = this.state.comments.map(function(c){
@@ -547,6 +556,7 @@ var LikeButton = React.createClass({displayName: "LikeButton",
 	},
 	componentDidMount: function() {
 		this.loadDataFromServer();
+		setInterval(this.loadDataFromServer,2000);
 	},
 	loadDataFromServer : function() {
 		var url = '/book/' + this.props.book.pk + '/like/get/number/';

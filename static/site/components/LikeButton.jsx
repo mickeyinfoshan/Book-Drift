@@ -6,6 +6,7 @@ var LikeButton = React.createClass({
 	},
 	componentDidMount: function() {
 		this.loadDataFromServer();
+		setInterval(this.loadDataFromServer,2000);
 	},
 	loadDataFromServer : function() {
 		var url = '/book/' + this.props.book.pk + '/like/get/number/';

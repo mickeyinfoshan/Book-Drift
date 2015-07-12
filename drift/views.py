@@ -10,7 +10,7 @@ import datetime
 @csrf_exempt
 def addDrift(request,bookId,userId):
 	book = Book.objects.get(pk=bookId)
-	user = User.objects.get(pk=bookId)
+	user = User.objects.get(pk=userId)
 	try:
 		currentDrift = Drift.objects.get(book=book,lendTo=user)
 		currentDrift.end = datetime.date.now()
@@ -40,7 +40,7 @@ def finishDrift(reuqest,driftId):
 
 def addDriftApply(request,bookId,userId):
 	book = Book.objects.get(pk=bookId)
-	user = User.objects.get(pk=bookId)
+	user = User.objects.get(pk=userId)
 	if book.currentOwner == user:
 		return HttpResponse(500)
 	driftApply = DriftApply(book=book,user=user)

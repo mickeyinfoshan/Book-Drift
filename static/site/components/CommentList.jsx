@@ -17,6 +17,7 @@ var CommentList = React.createClass({
 	componentDidMount: function() {
 		this.loadDataFromServer();
 		//setInterval(this.loadDataFromServer,5000);
+		setInterval(this.loadDataFromServer,2000);
 	},
 	render: function() {
 		var comments = this.state.comments.map(function(c){
